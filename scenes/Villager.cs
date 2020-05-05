@@ -9,14 +9,15 @@ public class Villager : KinematicBody2D
 	private Timer cooldown;
 	private Vector2 dir = Vector2.Zero;
 	private Vector2 worldBoundaries;
-
+	private bool canMove;
 	[Export]
 	private int speed;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		worldBoundaries = new Vector2(500, 500);
+		
+		worldBoundaries = new Vector2(250, 250);
 		cooldown = new Timer();
 		AddChild(cooldown);
 		cooldown.Connect("timeout", this, "move");
@@ -27,16 +28,18 @@ public class Villager : KinematicBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
 	{
-		this.MoveAndCollide(dir * delta);
+		if(canMove)
+		{
+			this.MoveAndCollide(dir * delta);
+		}
 	}
 
 	private void move()
 	{
 		Random rndDirection = new Random();
-		bool canMove = false;
-
-		//switch ((DIRECTIONS)rndDirection.Next(5))
-		switch((DIRECTIONS)1)
+		canMove = false;
+		DIRECTIONS wayDir = (DIRECTIONS)rndDirection.Next(5);
+		switch (wayDir)
 		{
 			case DIRECTIONS.NORTH:
 				dir.x = 0;
@@ -57,25 +60,24 @@ public class Villager : KinematicBody2D
 		}
 		cooldown.WaitTime = 1;
 		cooldown.Start();
-
-		canMove = canIMove(this.Position + this.dir);
+		
+		canMove = canIMove(this.Position + this.dir, wayDir);
 
 		if(!canMove)
 		{
-			this.dir = Vector2.Zero;
+			this.dir = -dir;
 		}
 	}
 
-	private bool canIMove(Vector2 newPosition)
+	private bool canIMove(Vector2 newPosition, DIRECTIONS direction)
 	{
 		bool result = true;
 
-		if (newPosition.x <= 0 || newPosition.x >= worldBoundaries.x)
+		if ((newPosition.x <= 0 && direction == DIRECTIONS.WEST) || (newPosition.x >= worldBoundaries.x && direction == DIRECTIONS.EAST))
 			result = false;
-		if (newPosition.y <= 0 || newPosition.y >= worldBoundaries.x)
+		if ((newPosition.y <= 0 && direction == DIRECTIONS.NORTH) || (newPosition.y >= worldBoundaries.y && direction == DIRECTIONS.SOUTH))
 			result = false;
-
-		GD.Print("Can I move ? " + newPosition + " => " +result);
 		return result;
 	}
 }
+
