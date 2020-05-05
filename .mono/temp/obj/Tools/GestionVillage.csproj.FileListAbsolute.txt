@@ -5,7 +5,6 @@ C:\Users\La Hyène Déphasée\OneDrive\Documents\GodotProjects\GestionVillage\.m
 C:\Users\La Hyène Déphasée\OneDrive\Documents\GodotProjects\GestionVillage\.mono\temp\obj\Tools\GestionVillage.dll
 C:\Users\La Hyène Déphasée\OneDrive\Documents\GodotProjects\GestionVillage\.mono\temp\obj\Tools\GestionVillage.pdb
 C:\Users\La Hyène Déphasée\OneDrive\Documents\GodotProjects\GestionVillage\.mono\temp\bin\Tools\GodotSharp.dll
-C:\Users\La Hyène Déphasée\OneDrive\Documents\GodotProjects\GestionVillage\.mono\temp\bin\Tools\GodotSharpEditor.dll
 C:\Users\La Hyène Déphasée\OneDrive\Documents\GodotProjects\GestionVillage\.mono\temp\bin\Tools\GodotSharp.pdb
 C:\Users\La Hyène Déphasée\OneDrive\Documents\GodotProjects\GestionVillage\.mono\temp\bin\Tools\GodotSharp.xml
 C:\Users\La Hyène Déphasée\OneDrive\Documents\GodotProjects\GestionVillage\.mono\temp\bin\Tools\GodotSharpEditor.pdb

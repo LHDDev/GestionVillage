@@ -2,31 +2,7 @@
 
 [ext_resource path="res://scenes/Villager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/World.gd" type="Script" id=2]
-
-[sub_resource type="CSharpScript" id=1]
-resource_name = "Camera2D"
-script/source = "using Godot;
-using System;
-
-public class Camera2D : Godot.Camera2D
-{
-	// Declare member variables here. Examples:
-	// private int a = 2;
-	// private string b = \"text\";
-
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		
-	}
-
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
-}
-"
+[ext_resource path="res://scripts/Camera.cs" type="Script" id=3]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
@@ -37,7 +13,7 @@ chunkSize = 250
 position = Vector2( 256.258, 150.512 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
-script = SubResource( 1 )
+script = ExtResource( 3 )
 
 [node name="Villager" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, 0 )

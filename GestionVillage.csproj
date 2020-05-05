@@ -44,11 +44,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GodotSharp">
-      <HintPath>.mono\assemblies\Debug\GodotSharp.dll</HintPath>
+      <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharp.dll</HintPath>
     </Reference>
     <Reference Include="GodotSharpEditor">
       <HintPath>.mono\assemblies\Debug\GodotSharpEditor.dll</HintPath>
     </Reference>
+    <Reference Include="GodotSharpEditor" Condition=" '$(Configuration)' == 'Tools' " />
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>

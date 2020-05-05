@@ -74,8 +74,6 @@ public class Villager : KinematicBody2D
 			result = false;
 		if (newPosition.y <= 0 || newPosition.y >= worldBoundaries.x)
 			result = false;
-
-		GD.Print("Can I move ? " + newPosition + " => " +result);
 		return result;
 	}
 }
