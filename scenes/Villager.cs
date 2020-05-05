@@ -79,6 +79,5 @@ public class Villager : KinematicBody2D
 			result = false;
 		return result;
 	}
-	//0328547994 EFS amiens don de plasma à rappeler pour dans deux semaines
 }
 
