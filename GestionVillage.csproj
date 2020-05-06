@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="scenes\Villager.cs" />
+    <Compile Include="scripts\Camera2D.cs" />
     <Compile Include="scripts\misc\Directions.cs" />
     <Compile Include="scripts\misc\Enumerations.cs" />
     <Compile Include="scripts\misc\Helpers.cs" />
