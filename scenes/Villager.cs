@@ -7,8 +7,9 @@ public class Villager : KinematicBody2D
 
 	private STATES state;
 	private Timer cooldown;
-	private Vector2 dir = Vector2.Zero;
-	private Vector2 worldBoundaries;
+	private Vector2 direction = Vector2.Zero;
+	private Vector2 chunkBoundaries;
+	Random rndDirection;
 
 	[Export]
 	private int speed;
@@ -16,63 +17,64 @@ public class Villager : KinematicBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		worldBoundaries = new Vector2(500, 500);
+		rndDirection= new Random();
+		chunkBoundaries = new Vector2(500, 500);
+
 		cooldown = new Timer();
 		AddChild(cooldown);
-		cooldown.Connect("timeout", this, "move");
+		cooldown.Connect("timeout", this, nameof(Move));
 
-		move();
+		Move();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
 	{
-		this.MoveAndCollide(dir * delta);
+		this.MoveAndCollide(direction * delta);
 	}
 
-	private void move()
+	private void Move()
 	{
-		Random rndDirection = new Random();
 		bool canMove = false;
 
 		//switch ((DIRECTIONS)rndDirection.Next(5))
 		switch((DIRECTIONS)1)
 		{
 			case DIRECTIONS.NORTH:
-				dir.x = 0;
-				dir.y = -speed;
+				direction.x = 0;
+				direction.y = -speed;
 				break;
 			case DIRECTIONS.EAST:
-				dir.x = speed;
-				dir.y = 0;
+				direction.x = speed;
+				direction.y = 0;
 				break;
 			case DIRECTIONS.WEST:
-				dir.x = -speed;
-				dir.y = 0;
+				direction.x = -speed;
+				direction.y = 0;
 				break;
 			case DIRECTIONS.SOUTH:
-				dir.x = 0;
-				dir.y = speed;
+				direction.x = 0;
+				direction.y = speed;
 				break;
 		}
 		cooldown.WaitTime = 1;
 		cooldown.Start();
 
-		canMove = canIMove(this.Position + this.dir);
+		canMove = CanIMove(this.Position + this.direction);
 
 		if(!canMove)
 		{
-			this.dir = Vector2.Zero;
+			this.direction = Vector2.Zero;
 		}
 	}
 
-	private bool canIMove(Vector2 newPosition)
+	private bool CanIMove(Vector2 newPosition)
 	{
 		bool result = true;
 
-		if (newPosition.x <= 0 || newPosition.x >= worldBoundaries.x)
+		if (newPosition.x <= 0 || newPosition.x >= chunkBoundaries.x)
 			result = false;
-		if (newPosition.y <= 0 || newPosition.y >= worldBoundaries.x)
+		if (newPosition.y <= 0 || newPosition.y >= chunkBoundaries.x)
 			result = false;
 		return result;
 	}
