@@ -39,6 +39,7 @@ public class Camera : Camera2D
 			{
 				if (Zoom.x >= 0.3 && Zoom.y >= 0.3)
 				{
+					
 					Zoom -= new Vector2(0.05f, 0.05f);
 				}
 			}
